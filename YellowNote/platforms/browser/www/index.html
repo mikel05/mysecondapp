@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+body {
+  margin: 0;
+  min-width: 100%;
+  min-height: 500%;
+}
+* {
+  box-sizing: border-box;
+}
+
+textarea {
+  border: thin solid #000000;
+  width: 800px;
+  height: 1000px
+  float: center;
+  font-size: 30px;
+  background: #ffff00;
+}
+
+
+
+.btn-group .button {
+    background-color: #000000; 
+    border: 1px solid green;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.btn-group .button:not(:last-child) {
+
+    border-right: none; 
+}
+.btn-group .button {
+    position: relative;
+
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-group .button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.btn-group .button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.contents {
+	background-color: #d3d3d3;
+  margin: 0;
+  padding: 0;
+}
+
+</style>
+<title> Yellow Note </title>
+</head>
+<center>
+<font face="Calibri" size="6">
+<h1>Yellow Note<h1></font></center>
+<body>
+
+<center><br>
+<textarea wrap="virtual" placeholder="Enter a Note..." id="Note" rows="10" cols="50" maxlength="500"></textarea> 
+
+ </center><br><br><br>
+<div class="btn-group">
+
+<button class="button" id="btnSave" onclick="isaveangnote()">SAVE NOTES</button>
+<button class="button" onclick="localStorage.setItem('Note','');ilabasangnote()">DELETE NOTES</button>
+<button class="button" onclick="ilabasangnote()">VIEW NOTES</button></div>
+<p style="clear:both"><br></p>
+
+<font size="40tx">
+<center><p>NOTES:<br>
+<pre id="contents">
+
+</pre></center></p></center></font><br>
+<script>
+
+function isaveangnote(){
+  var mikol = localStorage.getItem('Note'), 
+      arr = [];
+  if (!mikol) { mikol = ''; }  
+  arr = mikol.split(',');
+
+  arr.push(document.getElementById("Note").value);
+  mikol = arr.join(' ');
+  localStorage.setItem("Note", mikol);
+  ilabasangnote();
+}
+
+function ilabasangnote() {
+  var OO = localStorage.getItem('Note');
+  document.getElementById('contents').innerHTML =""+OO.substr(1);
+}
+
+
+</script>
+
+</body>
+</html>
